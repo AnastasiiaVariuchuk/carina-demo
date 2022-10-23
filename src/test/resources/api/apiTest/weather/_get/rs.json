@@ -1,0 +1,41 @@
+{
+  "location": {
+    "name": "type:String",
+    "region": "type:String",
+    "country": "type:String",
+    "lat": "type:Double",
+    "lon": "type:Double",
+    "tz_id": "type:String",
+    "localtime_epoch": "type:Integer",
+    "localtime": "type:String"
+  },
+  "current": {
+    "last_updated_epoch": "type:Integer",
+    "last_updated": "type:String",
+    "temp_c": "type:Double",
+    "temp_f": "type:Double",
+    "is_day": "type:Integer",
+    "condition": {
+      "text": "type:String",
+      "icon": "type:String",
+      "code": "type:Integer"
+    },
+    "wind_mph": "type:Double",
+    "wind_kph": "type:Double",
+    "wind_degree": "type:Integer",
+    "wind_dir": "type:String",
+    "pressure_mb": "type:Double",
+    "pressure_in": "type:Double",
+    "precip_mm": "type:Double",
+    "precip_in": "type:Double",
+    "humidity": "type:Integer",
+    "cloud": "type:Integer",
+    "feelslike_c": "type:Double",
+    "feelslike_f": "type:Double",
+    "vis_km": "type:Double",
+    "vis_miles": "type:Double",
+    "uv": "type:Double",
+    "gust_mph": "type:Double",
+    "gust_kph": "type:Double"
+  }
+}
