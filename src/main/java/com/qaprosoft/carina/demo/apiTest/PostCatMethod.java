@@ -9,13 +9,15 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "${base_url}/api/registers", methodType = HttpMethodType.POST)
-@RequestTemplatePath(path = "api/apiTest/registrations/_post/rq.json")
-@ResponseTemplatePath(path = "api/apiTest/registrations/_post/rs.json")
+@Endpoint(url = "${base_url}/api/cats._post", methodType = HttpMethodType.POST)
+@RequestTemplatePath(path = "api/apiTest/cats._post/rq.json")
+@ResponseTemplatePath(path = "api/apiTest/cats/.post/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
-public class PostRegisterMethod extends AbstractApiMethodV2 {
-    public PostRegisterMethod() {
-        super("api/apiTest/registrations/_post/rq.json", "api/apiTest/registrations/_post/rs.json");
+public class PostCatMethod extends AbstractApiMethodV2 {
+    public PostCatMethod() {
+        super("api/apiTest/cats._post/rq.json", "api/apiTest/cats._post/rs.json");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
     }
 }
+
+
