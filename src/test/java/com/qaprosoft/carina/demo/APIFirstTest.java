@@ -4,7 +4,10 @@ import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.apiTest.*;
+import com.qaprosoft.carina.demo.apiTest.GetCatsMethod;
+import com.qaprosoft.carina.demo.apiTest.GetForecastMethod;
+import com.qaprosoft.carina.demo.apiTest.PostCatMethod;
+import com.qaprosoft.carina.demo.apiTest.PostUserMethod;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.testng.annotations.Test;
 
