@@ -28,7 +28,7 @@ public class Login extends AbstractPage {
         setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
 
-    public ButtonExamination getButtonContainer() {
+    public ButtonExamination getButton() {
         return button;
     }
 

@@ -7,12 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class InventoryProductExamination extends AbstractUIObject {
-
     @FindBy(xpath = "//div[@class=\"inventory_details_name large_size\"]")
-    private ExtendedWebElement itemName;
+    private ExtendedWebElement productName;
 
     @FindBy(xpath = "//div[@class=\"inventory_details_price\"]")
-    private ExtendedWebElement itemPrice;
+    private ExtendedWebElement productPrice;
 
     @FindBy(xpath = "//button[@id='back-to-products']")
     private ExtendedWebElement backToProductsButton;
@@ -23,19 +22,19 @@ public class InventoryProductExamination extends AbstractUIObject {
 
     public Main clickToBack(Main mainPage) {
         backToProductsButton.click(3000);
-        setPageAbsoluteURL(mainPage.getMainPageUrl());
+        setPageAbsoluteURL(mainPage.getMainUrl());
         return mainPage;
     }
 
-    public String readItemName() {
-        return itemName.getText();
+    public String readProductName() {
+        return productName.getText();
     }
 
-    public String readItemPrice() {
-        return itemPrice.getText();
+    public String readProductPrice() {
+        return productPrice.getText();
     }
 
-    public String readBackButton() {
+    public String backToProductsButton() {
         return backToProductsButton.getText();
     }
 

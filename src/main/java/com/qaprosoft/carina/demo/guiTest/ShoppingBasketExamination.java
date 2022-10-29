@@ -12,33 +12,32 @@ import java.util.List;
 public class ShoppingBasketExamination extends AbstractUIObject {
 
     @FindBy(xpath = "//div[@class=\"cart_item\"]")
-    private List<ExtendedWebElement> cartItems;
+    private List<ExtendedWebElement> shoppingBasketProducts;
 
     @FindBy(xpath = "//div[@class=\"inventory_item_name\"]")
-    private List<ExtendedWebElement> cartItemsNames;
+    private List<ExtendedWebElement> productsNames;
 
     @FindBy(xpath = "//div[@class=\"inventory_item_price\"]")
-    private List<ExtendedWebElement> cartItemsPrices;
+    private List<ExtendedWebElement> productsPrices;
 
     public ShoppingBasketExamination(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public List<String> readCartItemsNames() {
-        List<String> res = new ArrayList<>();
-        for(int i = 0; i < cartItemsNames.size(); i++) {
-            res.add(cartItemsNames.get(i).getText());
+    public List<String> readProductsNames() {
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < productsNames.size(); i++) {
+            result.add(productsNames.get(i).getText());
         }
-        return res;
+        return result;
     }
 
-    public List<String> readCartItemsPrices() {
-        List<String> res = new ArrayList<>();
-        for(int i = 0; i < cartItemsPrices.size(); i++) {
-            res.add(cartItemsPrices.get(i).getText());
+    public List<String> readProductsPrices() {
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < productsPrices.size(); i++) {
+            result.add(productsPrices.get(i).getText());
         }
-        return res;
+        return result;
     }
-
 
 }

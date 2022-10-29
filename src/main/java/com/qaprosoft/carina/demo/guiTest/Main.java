@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class Main extends AbstractPage {
-    private final String mainPageUrl = "https://www.saucedemo.com/inventory.html";
+    private final String mainUrl = "https://www.saucedemo.com/inventory.html";
 
     @FindBy(id = "inventory_container")
-    private InventoryExamination inventoryContainer;
+    private InventoryExamination inventoryExamination;
 
     @FindBy(className = "bm-menu")
     private MenuExamination menuExamination;
@@ -18,11 +18,11 @@ public class Main extends AbstractPage {
 
     public Main(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL(mainPageUrl);
+        setPageAbsoluteURL(mainUrl);
     }
 
-    public InventoryExamination getInventoryContainer() {
-        return inventoryContainer;
+    public InventoryExamination getInventoryExamination() {
+        return inventoryExamination;
     }
     public MenuExamination getMenuExamination() {
         return menuExamination;
@@ -30,7 +30,7 @@ public class Main extends AbstractPage {
     public SortExamination getSortExamination() {
         return sortExamination;
     }
-    public String getMainPageUrl() {
-        return mainPageUrl;
+    public String getMainUrl() {
+        return mainUrl;
     }
 }

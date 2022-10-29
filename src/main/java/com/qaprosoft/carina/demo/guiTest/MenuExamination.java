@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class MenuExamination extends AbstractUIObject {
     @FindBy(xpath = "//div[@class='bm-burger-button']")
-    private ExtendedWebElement burgerMenuButton;
+    private ExtendedWebElement burgerButton;
 
     @FindBy(xpath = "//a[@id='logout_sidebar_link']")
     private ExtendedWebElement logoutLink;
@@ -17,10 +17,10 @@ public class MenuExamination extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public Login clickToLogout(Login loginPage) {
-        burgerMenuButton.click(2);
+    public Login toLogout(Login login) {
+        burgerButton.click(2);
         logoutLink.click(10);
-        setPageAbsoluteURL(loginPage.getLoginPageUrl());
-        return loginPage;
+        setPageAbsoluteURL(login.getLoginPageUrl());
+        return login;
     }
 }

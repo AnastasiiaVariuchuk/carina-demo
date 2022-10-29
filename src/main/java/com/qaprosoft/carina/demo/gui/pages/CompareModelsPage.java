@@ -41,7 +41,6 @@ public class CompareModelsPage extends AbstractPage {
         super(driver);
         setUiLoadedMarker(compareMenu);
         setPageAbsoluteURL(comparePageUrl);
-        //setPageURL("/compare.php3");
     }
 
     public List<ModelSpecs> compareModels(String... models) {
@@ -56,7 +55,6 @@ public class CompareModelsPage extends AbstractPage {
             for (ModelSpecs.SpecType type : ModelSpecs.SpecType.values()) {
                 ExtendedWebElement spec = findExtendedWebElement(By.xpath(
                         String.format("//tr[.//a[text()='%s']]//td[@class='nfo'][%d]", type.getType(), index + 1)));
-                //System.out.println(spec.getText());
                 modelSpec.setToModelSpecsMap(type, spec.getText());
             }
             modelSpecs.add(modelSpec);

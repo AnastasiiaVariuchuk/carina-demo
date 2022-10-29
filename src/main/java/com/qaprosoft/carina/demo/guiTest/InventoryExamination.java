@@ -10,128 +10,101 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryExamination extends AbstractUIObject {
-    @FindBy(xpath = "//div[@class=\"inventory_item\"]")
-    private List<ExtendedWebElement> items;
-
     @FindBy(xpath = "//div[@class=\"inventory_item\"]//div[@class=\"inventory_item_name\"]")
-    private List<ExtendedWebElement> itemNames;
+    private List<ExtendedWebElement> productNames;
 
     @FindBy(xpath = "//div[@class=\"inventory_item\"]//button")
-    private List<ExtendedWebElement> itemAddCartButtons;
+    private List<ExtendedWebElement> createShoppingBasketButtons;
 
     @FindBy(xpath = "//div[@class=\"pricebar\"]//div[@class=\"inventory_item_price\"]")
-    private List<ExtendedWebElement> itemPrices;
+    private List<ExtendedWebElement> productPrices;
 
     @FindBy(xpath = "//div[@class='inventory_item']//div[@class='inventory_item_label']//a")
     private List<ExtendedWebElement> ids;
 
     @FindBy(xpath = "//div[@id=\"shopping_cart_container\"]//span[@class=\"shopping_cart_badge\"]")
-    private List<ExtendedWebElement> elementsInCart;
+    private List<ExtendedWebElement> elementsInShoppingBasket;
 
     @FindBy(xpath = "//a[@class=\"shopping_cart_link\"]")
-    private ExtendedWebElement shoppingCartLink;
+    private ExtendedWebElement shoppingBasketLink;
 
     public InventoryExamination(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public ShoppingBasket openCartPage() {
-        shoppingCartLink.click();
+    public ShoppingBasket openShoppingBasketPage() {
+        shoppingBasketLink.click();
         return new ShoppingBasket(driver);
     }
 
-    public List<String> readItems() {
-        List<String> tmp = new ArrayList<>();
-        for(int i = 0; i < items.size(); i++) {
-            tmp.add(items.get(i).getText());
-        }
-        return tmp;
-    }
-
-    public List<String> readItemNames() {
-        List<String> tmp = new ArrayList<>();
-        for(int i = 0; i < itemNames.size(); i++) {
-            tmp.add(itemNames.get(i).getText());
-        }
-        return tmp;
-    }
-
-
-    public List<String> readAddCartButtons() {
-        List<String> tmp = new ArrayList<>();
-        for (int i = 0; i < itemAddCartButtons.size(); i++) {
-            tmp.add(itemAddCartButtons.get(i).getText());
-        }
-        return tmp;
-    }
-
-    public List<String> readItemsPrices() {
-        List<String> res = new ArrayList<>();
-        for (int i = 0; i < itemPrices.size(); i++) {
-            res.add(itemPrices.get(i).getText());
-        }
-        return res;
-    }
-
-    public List<String> readIds() {
-        List<String> res = new ArrayList<>();
-        for (int i = 0; i < ids.size(); i++) {
-            res.add(ids.get(i).getAttribute("id"));
-        }
-        return res;
-    }
-
-    public List<Integer> readIntegerFromIds() {
-        List<String> tmp = readIds();
-        List<Integer> result = new ArrayList<>();
-        for(int i = 0; i < tmp.size(); i++) {
-            String[] p = tmp.get(i).split("_");
-            result.add(Integer.parseInt(p[1]));
+    public List<String> readProductNames() {
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < productNames.size(); i++) {
+            result.add(productNames.get(i).getText());
         }
         return result;
     }
 
 
-
-    public String readElementsInCart() {
-        return elementsInCart.get(0).getText();
+    public List<String> readProductPrices() {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < productPrices.size(); i++) {
+            result.add(productPrices.get(i).getText());
+        }
+        return result;
     }
 
-    public int addCartButtonClick(String name) {
-        int idx = readItemNames().indexOf(name);
-        if (idx < 0) {
+    public List<String> readIds() {
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < ids.size(); i++) {
+            result.add(ids.get(i).getAttribute("id"));
+        }
+        return result;
+    }
+
+    public List<Integer> getIntFromIds() {
+        List<String> arr = readIds();
+        List<Integer> result = new ArrayList<>();
+        for(int i = 0; i < arr.size(); i++) {
+            String[] p = arr.get(i).split("_");
+            result.add(Integer.parseInt(p[1]));
+        }
+        return result;
+    }
+
+    public String readElementsInShoppingBasket() {
+        return elementsInShoppingBasket.get(0).getText();
+    }
+
+    public int createShoppingButtonClick(String name) {
+        if (readProductNames().indexOf(name) < 0) {
             throw new RuntimeException();
         } else {
-            assertElementPresent(itemAddCartButtons.get(idx));
-            itemAddCartButtons.get(idx).click();
-            return idx;
+            assertElementPresent(createShoppingBasketButtons.get(readProductNames().indexOf(name)));
+            createShoppingBasketButtons.get(readProductNames().indexOf(name)).click();
+            return readProductNames().indexOf(name);
         }
     }
 
     public Product clickOnProduct(String name, int x) {
-        int idx = readItemNames().indexOf(name);
-        if (idx < 0) {
+        if (readProductNames().indexOf(name) < 0) {
             throw new RuntimeException();
         } else {
-            assertElementPresent(itemNames.get(idx));
-            itemNames.get(idx).click(3);
+            assertElementPresent(productNames.get(readProductNames().indexOf(name)));
+            productNames.get(readProductNames().indexOf(name)).click(3);
             return new Product(driver, x);
         }
     }
 
-    public List<ExtendedWebElement> getItems() {
-        return items;
+    public List<ExtendedWebElement> getProductNames() {
+        return productNames;
     }
 
-    public List<ExtendedWebElement> getItemNames() {
-        return itemNames;
+    public List<ExtendedWebElement> getCreateShoppingBasketButtons() {
+        return createShoppingBasketButtons;
     }
 
-    public List<ExtendedWebElement> getItemAddCartButtons() {
-        return itemAddCartButtons;
-    }
-
-    public List<ExtendedWebElement> getElementsInCart() {
-        return elementsInCart;
+    public List<ExtendedWebElement> getElementsInShoppingBasket() {
+        return elementsInShoppingBasket;
     }
 }

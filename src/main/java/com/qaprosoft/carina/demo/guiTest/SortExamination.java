@@ -8,45 +8,37 @@ import org.openqa.selenium.support.FindBy;
 
 public class SortExamination extends AbstractUIObject {
     @FindBy(xpath = "//select[@class='product_sort_container']")
-    private ExtendedWebElement sortButton;
+    private ExtendedWebElement sort;
 
     @FindBy(xpath = "//span[@class='active_option']")
     private ExtendedWebElement activeOption;
 
-    @FindBy(xpath = "//select[@class='product_sort_container']//option[@value=\"az\"]")
-    private ExtendedWebElement azOption;
-
     @FindBy(xpath = "//select[@class='product_sort_container']//option[@value=\"za\"]")
-    private ExtendedWebElement zaOption;
+    private ExtendedWebElement za;
 
     @FindBy(xpath = "//select[@class='product_sort_container']//option[@value=\"lohi\"]")
-    private ExtendedWebElement lohiOption;
+    private ExtendedWebElement lh;
 
     @FindBy(xpath = "//select[@class='product_sort_container']//option[@value=\"hilo\"]")
-    private ExtendedWebElement hiloOption;
+    private ExtendedWebElement hl;
 
     public SortExamination(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public void clickOnSortButtonAndGetAtoZ() {
-        sortButton.click();
-        azOption.click();
+    public void sortZtoA() {
+        sort.click();
+        za.click();
     }
 
-    public void clickOnSortButtonAndGetZtoA() {
-        sortButton.click();
-        zaOption.click();
+    public void sortLowToHigh() {
+        sort.click();
+        lh.click();
     }
 
-    public void clickOnSortButtonAndGetLowToHigh() {
-        sortButton.click();
-        lohiOption.click();
-    }
-
-    public void clickSortButtonAndGetHighToLow() {
-        sortButton.click();
-        hiloOption.click();
+    public void sortHighToLow() {
+        sort.click();
+        hl.click();
     }
 
     public String readActiveOption() {

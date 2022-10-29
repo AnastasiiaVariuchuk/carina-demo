@@ -5,16 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 public class Product extends AbstractPage {
-    private String itemPageUrl;
-    private Main mainPage;
-
+    private String productPageUrl;
     @FindBy(id = "inventory_item_container")
     private InventoryProductExamination container;
 
     public Product(WebDriver driver, int x) {
         super(driver);
-        itemPageUrl = String.format("https://www.saucedemo.com/inventory-item.html?id=%d", x);
-        setPageAbsoluteURL(itemPageUrl);
+        productPageUrl = String.format("https://www.saucedemo.com/inventory-item.html?id=%d", x);
+        setPageAbsoluteURL(productPageUrl);
     }
 
     public InventoryProductExamination getContainer() {
