@@ -6,12 +6,12 @@ import com.qaprosoft.carina.core.foundation.api.annotation.ResponseTemplatePath;
 import com.qaprosoft.carina.core.foundation.api.annotation.SuccessfulHttpStatus;
 import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
-import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "http://api.weatherapi.com/v1/current.json?key=50d04e169bdf46d6b3d130416222410&q=London&aqi=no", methodType = HttpMethodType.GET)
-@ResponseTemplatePath(path = "api/apiTest/getForecast/rs.json")
+@Endpoint(url = "https://reqres.in/api/users/2",
+        methodType = HttpMethodType.GET)
+@ResponseTemplatePath(path = "api/apiTest/getUser/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
-public class GetForecastMethod extends AbstractApiMethodV2 {
-    public GetForecastMethod() {
+public class GetUserMethod extends AbstractApiMethodV2 {
+    public GetUserMethod() {
     }
 }

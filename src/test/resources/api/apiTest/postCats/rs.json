@@ -1,0 +1,6 @@
+{
+  "id": "${id}",
+  "url": "${url}",
+  "width": "skip",
+  "height": "skip"
+}

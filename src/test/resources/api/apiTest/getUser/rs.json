@@ -1,0 +1,13 @@
+{
+  "data": {
+    "id": "type:Integer",
+    "email": "type:String",
+    "first_name": "type:String",
+    "last_name": "type:String",
+    "avatar": "type:String"
+  },
+  "support": {
+    "url": "type:String",
+    "text": "type:String"
+  }
+}

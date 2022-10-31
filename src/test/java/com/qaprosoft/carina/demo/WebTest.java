@@ -200,9 +200,34 @@ public class WebTest implements IAbstractTest {
         //===================================================================//
         SortExamination sortExamination = main.getSortExamination();
         Assert.assertTrue(sortExamination.isUIObjectPresent(5), "Sort container wasn't found!");
-        Assert.assertEquals(sortExamination.readActiveOption(),
-                "name (a to z)".toUpperCase(Locale.ROOT), sortExamination.readActiveOption());
+        Assert.assertEquals(sortExamination.readActiveOption(), "name (a to z)".toUpperCase(Locale.ROOT), sortExamination.readActiveOption());
+        List<String> sortedProducts = new ArrayList<>(inventoryExamination.readProductNames());
+        Collections.sort(sortedProducts);
+        Assert.assertEquals(sortedProducts, inventoryExamination.readProductNames(), "Wrong word order");
+        sortExamination.sortZtoA();
+        sortedProducts = new ArrayList<>(inventoryExamination.readProductNames());
+        Collections.sort(sortedProducts); Collections.reverse(sortedProducts);
+        Assert.assertEquals(sortedProducts, inventoryExamination.readProductNames(), "Wrong word order");
 
+        //===================================================================//
+        sortExamination.sortLowToHigh();
+        List<Double> doubleList = new ArrayList<>();
+        for (String s : inventoryExamination.readProductPrices()) {
+            doubleList.add(Double.parseDouble(s.substring(1)));
+        }
+        List<Double> sortedDouble = new ArrayList<>(doubleList);
+        Collections.sort(sortedDouble);
+        Assert.assertEquals(sortedDouble, doubleList, "Wrong price order");
+
+        //===================================================================//
+        sortExamination.sortHighToLow();
+        doubleList = new ArrayList<>();
+        for (String s : inventoryExamination.readProductPrices()) {
+            doubleList.add(Double.parseDouble(s.substring(1)));
+        }
+        sortedDouble = new ArrayList<>(doubleList);
+        Collections.sort(sortedDouble); Collections.reverse(sortedDouble);
+        Assert.assertEquals(sortedDouble, doubleList, "Wrong price order");
     }
 
 }

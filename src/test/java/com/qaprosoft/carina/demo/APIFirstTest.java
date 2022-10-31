@@ -1,24 +1,23 @@
 package com.qaprosoft.carina.demo;
 
-import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.apiTest.GetCatsMethod;
-import com.qaprosoft.carina.demo.apiTest.GetForecastMethod;
-import com.qaprosoft.carina.demo.apiTest.PostCatMethod;
-import com.qaprosoft.carina.demo.apiTest.PostUserMethod;
-import org.skyscreamer.jsonassert.JSONCompareMode;
+import com.qaprosoft.carina.demo.apiTest.*;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.testng.annotations.Test;
 
-public class APIFirstTest implements IAbstractTest {
+import java.io.IOException;
+import java.net.http.HttpResponse;
 
+public class APIFirstTest implements IAbstractTest {
     @Test()
     @MethodOwner(owner = "AnastasiiaV")
-    public void testCreateCat() {
+    public void testPostCat() {
         PostCatMethod postUserMethod = new PostCatMethod();
-        postUserMethod.setProperties("api/apiTest/cats._post/cat.properties");
-        postUserMethod.expectResponseStatus(HttpResponseStatusType.CREATED_201);
+        postUserMethod.setProperties("api/apiTest/postCats/cat.properties");
         postUserMethod.callAPI();
         postUserMethod.validateResponse();
     }
@@ -28,18 +27,7 @@ public class APIFirstTest implements IAbstractTest {
     public void testGetCats() {
         GetCatsMethod getCatsMethod = new GetCatsMethod();
         getCatsMethod.callAPIExpectSuccess();
-        getCatsMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getCatsMethod.validateResponseAgainstSchema("api/apiTest/cats._get/rs.schema");
-    }
-
-    @Test()
-    @MethodOwner(owner = "AnastasiiaV")
-    public void testCreateRegistation() {
-        PostUserMethod postRegisterMethod = new PostUserMethod();
-        postRegisterMethod.setProperties("api/apiTest/users._post/users.properties");
-        postRegisterMethod.expectResponseStatus(HttpResponseStatusType.CREATED_201);
-        postRegisterMethod.callAPI();
-        postRegisterMethod.validateResponse();
+        getCatsMethod.validateResponseAgainstSchema("api/apiTest/getCats/rs.schema");
     }
 
     @Test()
@@ -47,7 +35,41 @@ public class APIFirstTest implements IAbstractTest {
     public void testGetForecast() {
         GetForecastMethod getWeatherMethod = new GetForecastMethod();
         getWeatherMethod.callAPIExpectSuccess();
-        getWeatherMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        getWeatherMethod.validateResponseAgainstSchema("api/apiTest/forecast._get/rs.schema");
+        getWeatherMethod.validateResponseAgainstSchema("api/apiTest/getForecast/rs.schema");
+    }
+
+    @Test()
+    @MethodOwner(owner = "AnastasiiaV")
+    public void testGetUser() {
+        GetUserMethod getUserMethod = new GetUserMethod();
+        getUserMethod.callAPIExpectSuccess();
+        getUserMethod.validateResponseAgainstSchema("api/apiTest/getUser/rs.schema");
+    }
+
+    @Test()
+    @MethodOwner(owner = "AnastasiiaV")
+    public void testPostUserMethod() {
+        PostUserMethod postUserMethod = new PostUserMethod();
+        postUserMethod.setProperties("api/apiTest/postUser/postUser.properties");
+        postUserMethod.callAPI();
+        postUserMethod.validateResponse();
+    }
+
+    @Test()
+    @MethodOwner(owner = "AnastasiiaV")
+    public void testPostPostMethod() {
+        PostPostMethod postPostMethod = new PostPostMethod();
+        postPostMethod.setProperties("api/apiTest/postPost/postPost.properties");
+        postPostMethod.callAPI();
+        postPostMethod.validateResponse();
+    }
+
+    @Test()
+    @MethodOwner(owner = "AnastasiiaV")
+    public void testPostPhotoMethod() {
+        PostPhotoMethod postPhotoMethod = new PostPhotoMethod();
+        postPhotoMethod.setProperties("api/apiTest/postPhoto/postPhoto.properties");
+        postPhotoMethod.callAPI();
+        postPhotoMethod.validateResponse();
     }
 }

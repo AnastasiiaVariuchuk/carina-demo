@@ -1,0 +1,7 @@
+{
+  "albumId": "${albumId}",
+  "id": "skip",
+  "title": "${title}",
+  "url": "${url}",
+  "thumbnailUrl": "${thumbnailUrl}"
+}
